@@ -27,7 +27,10 @@ SOURCES += \
         EGTS_Services/AuthService/Subrecords/Record_Responce.cpp \
         EGTS_Services/AuthService/Subrecords/Result_code.cpp \
         EGTS_Services/AuthService/Subrecords/Service_Info.cpp \
-        EGTS_Services/AuthService/Subrecords/Vehicle_Data.cpp
+        EGTS_Services/AuthService/Subrecords/Vehicle_Data.cpp \
+        #
+        EGTS_Services/TeledataService/Subrecords/Pos_Data.cpp \
+        EGTS_Services/TeledataService/EGTS_Teledata_Service.cpp \
 
 HEADERS += \
         utility.h \
@@ -53,4 +56,7 @@ HEADERS += \
         EGTS_Services/AuthService/Subrecords/Record_Responce.h \
         EGTS_Services/AuthService/Subrecords/Result_code.h \
         EGTS_Services/AuthService/Subrecords/Service_Info.h \
-        EGTS_Services/AuthService/Subrecords/Vehicle_Data.h
+        EGTS_Services/AuthService/Subrecords/Vehicle_Data.h \
+        #
+        EGTS_Services/TeledataService/Subrecords/Pos_Data.h \
+        EGTS_Services/TeledataService/EGTS_Teledata_Service.h

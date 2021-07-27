@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../../EGTS_Record/EGTS_Subrecord_Data.h"
+#include "../../../EGTS_Record/EGTS_Subrecord_Data.h"
 #include <cstdint>
 #include <optional>
 
@@ -26,10 +26,10 @@ public:
     struct EGTS_SUBRECORD_POS_DATA_RAW
     {
         uint32_t NTM; 	// 4 байта Navigation Time , seconds since 00:00:00 01.01.2010 UTC
-        uint32_t LAT;	// 4 байта Latitude, degree,  (WGS - 84) / 90 * 0xFFFFFFFF
-        uint32_t LONG;	// 4 байта Longitude, degree,  (WGS - 84) / 180 * 0xFFFFFFFF
-        uint8_t  FLG;	// 1 байт Flags
-        uint16_t SPD;	// 2 байта, см. ниже
+        uint32_t LAT;	  // 4 байта Latitude, degree,  (WGS - 84) / 90 * 0xFFFFFFFF
+        uint32_t LONG;	  // 4 байта Longitude, degree,  (WGS - 84) / 180 * 0xFFFFFFFF
+        uint8_t  FLG;	  // 1 байт Flags
+        uint16_t SPD;	  // 2 байта, см. ниже
         uint8_t  DIR;     // направление движения
         uint8_t  ODM[3];  // пройденное расстояние (пробег) в км, с дискретностью 0,1 км;
         uint8_t  DIN;     // битовые флаги, определяют состояние основных дискретных входов 1 ... 8
@@ -39,6 +39,9 @@ public:
 
 
     EGTS_SUBRECORD_POS_DATA_FLAGS_DETAIL detailed_flag;
+    double lon;
+    double lat;
+
     // optional fields
     uint8_t		ALT[3];	// высота над уровнем моря, м (опциональный параметр, наличие которого определяется битовым флагом ALTE);
     std::optional< uint16_t >	SRCD;		// (см. ниже) данные, характеризующие источник (событие) из поля src. Наличие и интерпретация значения данного поля определяется полем src

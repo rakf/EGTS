@@ -1,5 +1,6 @@
 #include "EGTS_Subrecord_Data.h"
 #include "../EGTS_Services/AuthService/EGTS_Auth_Service.h"
+#include "../EGTS_Services/TeledataService/EGTS_Teledata_Service.h"
 #include "../EGTS_Services/EGTS_Services_Type.h"
 
 EGTS_SUBRECORD_DATA::EGTS_SUBRECORD_DATA( EGTS_SERVICE_TYPE service_type_, uint8_t subrecord_type_, const char*& raw_data )
@@ -9,8 +10,11 @@ EGTS_SUBRECORD_DATA::EGTS_SUBRECORD_DATA( EGTS_SERVICE_TYPE service_type_, uint8
 	switch ( static_cast< EGTS_SERVICE_TYPE >( service_type ) )
 	{
 	case EGTS_SERVICE_TYPE::EGTS_AUTH_SERVICE :
-		data.push_back( std::move( EGTS_AUTH_SERVICE::ParseSubrecord(subrecord_type, raw_data ) ) );
+      data.push_back( std::move( EGTS_AUTH_SERVICE::ParseSubrecord( subrecord_type, raw_data ) ) );
 		break;
+   case EGTS_SERVICE_TYPE::EGTS_TELEDATA_SERVICE :
+      data.push_back( std::move( EGTS_TELEDATA_SERVICE::ParseSubrecord( subrecord_type, raw_data ) ) );
+      break;
 	default:
 		break;
 	}

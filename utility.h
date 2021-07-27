@@ -1,8 +1,10 @@
 #pragma once
 #include <cstdint>
-#include <string>
 #include <cstring>
 #include <optional>
+#include <vector>
+
+#include "EGTS_Packet/EGTS_Packet.h"
 
 template <typename FieldType>
 void fillField(FieldType& field, const char*& source, size_t size_field = 0)
@@ -103,4 +105,12 @@ const unsigned short Crc16Table[256] = {
 
 unsigned char CRC8EGTS( const unsigned char *lpBlock, unsigned char len);
 unsigned short CRC16EGTS( const unsigned char * pcBlock, unsigned short len);
+
+
+std::vector<char> MakeAnswer(const EGTS_Packet& packet);
+int EGTS_Packet_Create(char *buffer, EGTS_PACKET_TYPE pt);
+int responce_add_responce(char *buffer, int pointer, uint16_t pid, uint8_t pr);
+int EGTS_responce_add_record(char *buffer, int pointer, const EGTS_RECORD& record_source,  uint16_t crn, uint8_t rst);
+int packet_finalize(char *buffer, int pointer);
+
 

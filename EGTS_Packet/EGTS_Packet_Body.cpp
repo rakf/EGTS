@@ -9,7 +9,11 @@ EGTS_PT_APPDATA_BODY::EGTS_PT_APPDATA_BODY(uint16_t data_length_, const char*& r
 	// должен быть цикл
 	{
       //EGTS_RECORD record(raw_data);
-      records.emplace_back(raw_data);
+
+      if(  raw_data - (const char*)begin_unsigned_char_data  < data_length )
+      {
+         records.emplace_back(raw_data);
+      }
 	}
 
 	fillField(check_sum, raw_data);

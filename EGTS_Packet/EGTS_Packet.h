@@ -14,13 +14,6 @@ public:
     std::unique_ptr< EGTS_PACKET_BODY > body;
 };
 
-std::vector<char> MakeAnswer(const EGTS_Packet& packet);
-
-int EGTS_Packet_Create(char *buffer, EGTS_PACKET_TYPE pt);
-
-int responce_add_responce(char *buffer, int pointer, uint16_t pid, uint8_t pr);
-int EGTS_responce_add_record(char *buffer, int pointer, const EGTS_RECORD& record_source,  uint16_t crn, uint8_t rst);
-int packet_finalize(char *buffer, int pointer);
 
 
 

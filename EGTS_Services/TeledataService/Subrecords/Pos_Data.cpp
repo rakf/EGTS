@@ -3,9 +3,13 @@
 
 EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data)
 {
-    fillField( raw.NTM, raw_data);
+    fillField( raw.NTM, raw_data); // c 2010
+
     fillField( raw.LAT, raw_data);
     fillField( raw.LONG, raw_data);
+    lat = 90.0 * raw.LAT / 0xFFFFFFFF;
+    lon = 180.0 * raw.LAT / 0xFFFFFFFF;
+
     fillField( raw.FLG, raw_data);
 
     detailed_flag.ALT_exist = raw.FLG & 128;
@@ -16,6 +20,11 @@ EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data)
     detailed_flag.is_3d_fix = raw.FLG & 4;
     detailed_flag.coordinat_system = raw.FLG & 2;
     detailed_flag.valid = raw.FLG & 1;
+
+    if( detailed_flag.coordinat_system )
+    {
+       // перевод из ПЗ 90.02 в WSG-84
+    }
 
     fillField( raw.SPD, raw_data);
     fillField( raw.DIR, raw_data);

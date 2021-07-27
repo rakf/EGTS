@@ -1,40 +1,31 @@
-#include "EGTS_Auth_Service.h"
-#include "Subrecords/Auth_Info.h"
-#include "Subrecords/Auth_Params.h"
-#include "Subrecords/Module_Data.h"
-#include "Subrecords/Record_Responce.h"
-#include "Subrecords/Result_code.h"
-#include "Subrecords/Service_Info.h"
-#include "Subrecords/Term_Identity.h"
-#include "Subrecords/Vehicle_Data.h"
+#include "Ext_Pos_Data.h"
+#include "../../../utility.h"
 
-std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > EGTS_AUTH_SERVICE::ParseSubrecord(size_t type, const char*& raw_data)
+EGTS_SUBRECORD_EXT_POS_DATA::EGTS_SUBRECORD_EXT_POS_DATA( const char*& raw_data )
 {
-	switch ( static_cast< EGTS_AUTH_SERVICE_SUBRECORDS_TYPE >( type ) )
-   {
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_AUTH_INFO :
-			return std::make_shared< EGTS_SUBRECORD_AUTH_INFO >( raw_data ); 
+    fillField( raw.FLG, raw_data );
 
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_AUTH_PARAMS :
-			return std::make_shared< EGTS_SUBRECORD_AUTH_PARAMS >( raw_data );
+    detailed_flag.NS_field_exist = raw.FLG & 16;
+    detailed_flag.SAT_and_NS_fields_exists = raw.FLG & 8;
+    detailed_flag.PDOP_field_exist = raw.FLG & 4;
+    detailed_flag.HDOP_field_exist = raw.FLG & 2;
+    detailed_flag.VDOP_field_exist = raw.FLG & 1;
 
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_MODULE_DATA:
-			return std::make_shared< EGTS_SUBRECORD_MODULE_DATA >( raw_data );
+    if( detailed_flag.VDOP_field_exist ) fillField( VDOP, raw_data );
+    if( detailed_flag.HDOP_field_exist ) fillField( HDOP, raw_data );
+    if( detailed_flag.PDOP_field_exist ) fillField( PDOP, raw_data );
+    if( detailed_flag.SAT_and_NS_fields_exists ) { fillField( SAT, raw_data ); fillField( NS, raw_data ); }
+    if( detailed_flag.NS_field_exist ) fillField( NS, raw_data );
 
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_RECORD_RESPONSE:
-			return std::make_shared< EGTS_SUBRECORD_RECORD_RESPONCE >( raw_data );
-
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_RESULT_CODE:
-			return std::make_shared< EGTS_SUBRECORD_RESULT_CODE >( raw_data );
-
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_SERVICE_INFO:
-			return std::make_shared< EGTS_SUBRECORD_SERVICE_INFO >( raw_data );
-
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_TERM_IDENTITY:
-			return std::make_shared< EGTS_SUBRECORD_TERM_IDENTITY >( raw_data );
-
-		case EGTS_AUTH_SERVICE_SUBRECORDS_TYPE::EGTS_SR_VEHICLE_DATA:
-			return std::make_shared< EGTS_SUBRECORD_VEHICLE_DATA >( raw_data );
-	}
-
+    if( NS )
+    {
+        navigation_systems.QZSS = *NS & 128;
+        navigation_systems.IRNSS = *NS & 64;
+        navigation_systems.DORIS = *NS & 32;
+        navigation_systems.Beidou = *NS & 16;
+        navigation_systems.Compass = *NS & 8;
+        navigation_systems.Galileo = *NS & 4;
+        navigation_systems.GPS = *NS & 2;
+        navigation_systems.GLONASS = *NS & 1;
+    }
 }

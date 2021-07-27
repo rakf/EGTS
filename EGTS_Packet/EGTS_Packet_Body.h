@@ -40,6 +40,7 @@ public:
    EGTS_PT_RESPONCE_BODY_HEADER raw_header;
 };
 
+/*
 class EGTS_PT_SIGNED_APPDATA_BODY : public EGTS_PACKET_BODY
 {
 public:
@@ -48,6 +49,7 @@ private:
    int16_t signatureLength;
    std::optional<std::vector< uint16_t >> signatureData;
 };
+*/
 
 
 

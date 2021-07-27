@@ -3,7 +3,7 @@
 #include "../../EGTS_Record/EGTS_Subrecord_Data.h"
 #include <memory>
 
-enum class EGTS_AUTH_SERVICE_SUBRECORDS_TYPE
+enum class EGTS_TELEDATA_SERVICE_SUBRECORDS_TYPE
 {
 	EGTS_SR_RECORD_RESPONSE = 0,
 	EGTS_SR_POS_DATA = 16,
