@@ -31,6 +31,7 @@ SOURCES += \
         #
         EGTS_Services/TeledataService/Subrecords/Pos_Data.cpp \
         EGTS_Services/TeledataService/EGTS_Teledata_Service.cpp \
+        EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.cpp \
 
 HEADERS += \
         utility.h \
@@ -59,4 +60,5 @@ HEADERS += \
         EGTS_Services/AuthService/Subrecords/Vehicle_Data.h \
         #
         EGTS_Services/TeledataService/Subrecords/Pos_Data.h \
-        EGTS_Services/TeledataService/EGTS_Teledata_Service.h
+        EGTS_Services/TeledataService/EGTS_Teledata_Service.h \
+        EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.h \

@@ -28,9 +28,12 @@ EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data)
 
     fillField( raw.SPD, raw_data);
     fillField( raw.DIR, raw_data);
-    fillField( raw.ODM, raw_data);
+    fillField( raw.ODM, raw_data, 3);
     fillField( raw.DIN, raw_data);
     fillField( raw.SRC, raw_data);
+
+    if( detailed_flag.ALT_exist ) fillField( ALT, raw_data, 3);
+    if( raw.SRC >= 0 && raw.SRC < 36 ) fillField( SRCD, raw_data );
 
 
 }

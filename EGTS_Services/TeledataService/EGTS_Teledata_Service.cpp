@@ -15,7 +15,7 @@ std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > EGTS_TELEDATA_SERVICE::ParseSubrecor
                         return std::make_shared< EGTS_SUBRECORD_POS_DATA >( raw_data );
 
                  case EGTS_TELEDATA_SERVICE_SUBRECORDS_TYPE::EGTS_SR_EXT_POS_DATA :
-                         return std::make_shared< EGTS_SR_EXT_POS_DATA >( raw_data );
+                         return std::make_shared< EGTS_SUBRECORD_EXT_POS_DATA >( raw_data );
 
 	}
 
