@@ -1,5 +1,5 @@
-#include "Record_Responce.h"
-#include "../../../utility.h"
+#include "EGTS_Subrecord_Record_Responce.h"
+#include "../utility.h"
 
 EGTS_SUBRECORD_RECORD_RESPONCE::EGTS_SUBRECORD_RECORD_RESPONCE( const char*& raw_data )
 {

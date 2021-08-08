@@ -1,6 +1,6 @@
 #include "EGTS_Teledata_Service.h"
 #include "Subrecords/Pos_Data.h"
-#include "Subrecords/Record_Responce.h"
+#include "../../EGTS_Record/EGTS_Subrecord_Record_Responce.h"
 #include "Subrecords/Ext_Pos_Data.h"
 
 

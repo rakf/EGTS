@@ -1,7 +1,7 @@
 #include "utility.h"
 
 #include "EGTS_Record/EGTS_Subrecord.h"
-#include "EGTS_Services/AuthService/Subrecords/Record_Responce.h"
+#include "EGTS_Record/EGTS_Subrecord_Record_Responce.h"
 
 
 unsigned char CRC8EGTS( const unsigned char *lpBlock, unsigned char len)

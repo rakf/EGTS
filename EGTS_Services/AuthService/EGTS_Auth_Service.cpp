@@ -2,7 +2,7 @@
 #include "Subrecords/Auth_Info.h"
 #include "Subrecords/Auth_Params.h"
 #include "Subrecords/Module_Data.h"
-#include "Subrecords/Record_Responce.h"
+#include "../../EGTS_Record/EGTS_Subrecord_Record_Responce.h"
 #include "Subrecords/Result_code.h"
 #include "Subrecords/Service_Info.h"
 #include "Subrecords/Term_Identity.h"
