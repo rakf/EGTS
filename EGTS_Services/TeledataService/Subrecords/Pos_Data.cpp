@@ -1,8 +1,10 @@
 #include "Pos_Data.h"
 #include "../../../utility.h"
 
-EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data)
+EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data,  uint16_t length)
 {
+    auto begin = raw_data;
+
     fillField( raw.NTM, raw_data); // c 2010
 
     fillField( raw.LAT, raw_data);
@@ -33,7 +35,9 @@ EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data)
     fillField( raw.SRC, raw_data);
 
     if( detailed_flag.ALT_exist ) fillField( ALT, raw_data, 3);
-    if( raw.SRC >= 0 && raw.SRC < 36 ) fillField( SRCD, raw_data );
+    if( raw.SRC >= 0 &&
+        raw.SRC < 36 &&
+        raw_data - begin < length) fillField( SRCD, raw_data );
 
 
 }

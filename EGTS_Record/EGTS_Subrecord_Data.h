@@ -15,10 +15,11 @@ class EGTS_SUBRECORD_DATA
 {
 public:
    EGTS_SUBRECORD_DATA() = default;
-   EGTS_SUBRECORD_DATA( EGTS_SERVICE_TYPE service_type, uint8_t subrecord_type, const char*& raw_data );
+   EGTS_SUBRECORD_DATA( EGTS_SERVICE_TYPE service_type, uint8_t subrecord_type,  uint8_t length, const char*& raw_data );
 
 	EGTS_SERVICE_TYPE service_type;
 	uint8_t subrecord_type;
+    uint8_t length;
     std::vector< std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > > data;	// данные подзаписи
 };
 

@@ -6,15 +6,10 @@ EGTS_PT_APPDATA_BODY::EGTS_PT_APPDATA_BODY(uint16_t data_length_, const char*& r
 	data_length = data_length_;
 	const unsigned char* begin_unsigned_char_data = reinterpret_cast<const unsigned char*>(raw_data);
 
-	// должен быть цикл
-	{
-      //EGTS_RECORD record(raw_data);
-
-      if(  raw_data - (const char*)begin_unsigned_char_data  < data_length )
-      {
-         records.emplace_back(raw_data);
-      }
-	}
+    while(  raw_data - (const char*)begin_unsigned_char_data  < data_length )
+    {
+       records.emplace_back(raw_data);
+    }
 
 	fillField(check_sum, raw_data);
 
@@ -26,7 +21,7 @@ EGTS_PT_RESPONSE_BODY::EGTS_PT_RESPONSE_BODY( uint16_t data_length, const char*&
    const unsigned char* begin_unsigned_char_data = reinterpret_cast<const unsigned char*>(raw_data);
    fillField( raw_header.responcePacketID, raw_data );
    fillField( raw_header.processingResult, raw_data );
-   // должен быть цикл
+   // РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С†РёРєР»
    {
       //EGTS_RECORD record(raw_data);
       records.emplace_back(raw_data);

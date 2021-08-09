@@ -6,11 +6,11 @@
 
 struct EGTS_SUBRECORD_EXT_POS_DATA_FLAGS_DETAIL
 {
-    bool NS_field_exist; // определяет наличие поля NS в подзаписи
-    bool SAT_and_NS_fields_exists; // определяет наличие полей NS и SAT в подзаписи
-    bool PDOP_field_exist; // определяет наличие поля PDOP в подзаписи
-    bool HDOP_field_exist; // определяет наличие поля HDOP в подзаписи
-    bool VDOP_field_exist; // определяет наличие поля VDOP в подзаписи
+    bool NS_field_exists; // определяет наличие поля NS в подзаписи
+    bool SAT_field_exists; // определяет наличие полей NS и SAT в подзаписи
+    bool PDOP_field_exists; // определяет наличие поля PDOP в подзаписи
+    bool HDOP_field_exists; // определяет наличие поля HDOP в подзаписи
+    bool VDOP_field_exists; // определяет наличие поля VDOP в подзаписи
 };
 
 struct EGTS_SUBRECORD_EXT_POS_DATA_NS_FLAGS_DETAIL // Флаги используемых навигационных систем

@@ -23,7 +23,7 @@ enum class EGTS_TELEDATA_SERVICE_SUBRECORDS_TYPE
 class EGTS_TELEDATA_SERVICE
 {
 public:
-    static std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > ParseSubrecord( size_t type, const char*& raw_data );
+    static std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > ParseSubrecord( size_t type, uint16_t length, const char*& raw_data );
 };
 
 

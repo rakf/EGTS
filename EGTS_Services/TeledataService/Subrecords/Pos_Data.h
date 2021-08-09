@@ -20,7 +20,7 @@ class EGTS_SUBRECORD_POS_DATA : public EGTS_SUBRECORD_DATA_BASE
 {
 public:
     EGTS_SUBRECORD_POS_DATA() = default;
-    EGTS_SUBRECORD_POS_DATA(const char*& raw_data);
+    EGTS_SUBRECORD_POS_DATA(const char*& raw_data, uint16_t length);
 
     #pragma pack( push, 1 )
     struct EGTS_SUBRECORD_POS_DATA_RAW
