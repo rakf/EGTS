@@ -1,16 +1,20 @@
 #include "Pos_Data.h"
 #include "../../../utility.h"
+#include <iomanip>
+#include <sstream>
+
 
 EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data,  uint16_t length)
 {
     auto begin = raw_data;
 
     fillField( raw.NTM, raw_data); // c 2010
+    time_string = getDateString( raw.NTM );
 
     fillField( raw.LAT, raw_data);
     fillField( raw.LONG, raw_data);
     lat = 90.0 * raw.LAT / 0xFFFFFFFF;
-    lon = 180.0 * raw.LAT / 0xFFFFFFFF;
+    lon = 180.0 * raw.LONG / 0xFFFFFFFF;
 
     fillField( raw.FLG, raw_data);
 
@@ -39,5 +43,47 @@ EGTS_SUBRECORD_POS_DATA::EGTS_SUBRECORD_POS_DATA(const char*& raw_data,  uint16_
         raw.SRC < 36 &&
         raw_data - begin < length) fillField( SRCD, raw_data );
 
+    speed = (raw.SPD & 16383) / 10;
+}
 
+time_t toUTC(std::tm& timeinfo)
+{
+#ifdef _WIN32
+    std::time_t tt = _mkgmtime(&timeinfo);
+#else
+    time_t tt = timegm(&timeinfo);
+#endif
+    return tt;
+}
+
+std::chrono::system_clock::time_point
+createDateTime(int year,
+               int month,
+               int day,
+               int hour,
+               int minute,
+               int second) // these are UTC values
+{
+    tm timeinfo1 = tm();
+    timeinfo1.tm_year = year - 1900;
+    timeinfo1.tm_mon = month - 1;
+    timeinfo1.tm_mday = day;
+    timeinfo1.tm_hour = hour;
+    timeinfo1.tm_min = minute;
+    timeinfo1.tm_sec = second;
+    tm timeinfo = timeinfo1;
+    time_t tt = toUTC(timeinfo);
+    return std::chrono::system_clock::from_time_t(tt);
+}
+
+
+std::string getDateString( uint32_t NTM )
+{
+   auto date_start = createDateTime( 2010, 1, 1, 0, 0, 0 );
+   auto seconds = std::chrono::duration_cast<std::chrono::seconds>(
+            date_start.time_since_epoch()).count() + NTM;
+   auto date_time = *gmtime(&seconds);
+   std::stringstream stream;
+   stream << std::put_time(&date_time, "%c %Z");
+   return stream.str();
 }

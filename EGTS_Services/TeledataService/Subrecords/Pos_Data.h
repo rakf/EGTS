@@ -3,6 +3,7 @@
 #include "../../../EGTS_Record/EGTS_Subrecord_Data.h"
 #include <cstdint>
 #include <optional>
+#include <chrono>
 
 struct EGTS_SUBRECORD_POS_DATA_FLAGS_DETAIL
 {
@@ -41,6 +42,8 @@ public:
     EGTS_SUBRECORD_POS_DATA_FLAGS_DETAIL detailed_flag;
     double lon;
     double lat;
+    double speed;
+    std::string time_string;
 
     // optional fields
     uint8_t		ALT[3];	// высота над уровнем моря, м (опциональный параметр, наличие которого определяется битовым флагом ALTE);
@@ -48,8 +51,14 @@ public:
 };
 
 
+time_t toUTC(std::tm& timeinfo);
 
+std::chrono::system_clock::time_point
+createDateTime(int year,
+               int month,
+               int day,
+               int hour,
+               int minute,
+               int second); // these are UTC values
 
-
-
-
+std::string getDateString( uint32_t NTM );

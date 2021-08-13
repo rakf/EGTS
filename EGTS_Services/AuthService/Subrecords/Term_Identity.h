@@ -28,7 +28,6 @@ class EGTS_SUBRECORD_TERM_IDENTITY : public EGTS_SUBRECORD_DATA_BASE
 public:
    EGTS_SUBRECORD_TERM_IDENTITY( const char*& raw_data );
 
-private:
    uint32_t TID;  // уникальный идентификатор, назначаемый при программировании АТ
    uint8_t	FLG;  // Flags. см выше
    EGTS_SUBRECORD_TERM_IDENTITY_FLAGS_DETAIL flags_detail;

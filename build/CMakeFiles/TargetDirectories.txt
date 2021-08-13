@@ -1,0 +1,3 @@
+/home/local/REGION/ka.uvarov/Projects/EGTS/EGTS/build/CMakeFiles/rebuild_cache.dir
+/home/local/REGION/ka.uvarov/Projects/EGTS/EGTS/build/CMakeFiles/edit_cache.dir
+/home/local/REGION/ka.uvarov/Projects/EGTS/EGTS/build/CMakeFiles/EGTS_PARSER.dir

@@ -37,4 +37,6 @@ std::shared_ptr< EGTS_SUBRECORD_DATA_BASE > EGTS_AUTH_SERVICE::ParseSubrecord(si
 			return std::make_shared< EGTS_SUBRECORD_VEHICLE_DATA >( raw_data );
 	}
 
+   return std::shared_ptr< EGTS_SUBRECORD_DATA_BASE >();
+
 }

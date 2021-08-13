@@ -26,7 +26,11 @@ ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/AuthService/Subrecords/Service_Info.cp
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/AuthService/Subrecords/Vehicle_Data.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Pos_Data.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/EGTS_Teledata_Service.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.cpp)
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/State_Data.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ad_Sensors_Data.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Counters_Data.cpp
+)
 
 set(HEADER_FILES 
 ${CMAKE_CURRENT_SOURCE_DIR}/utility.h
@@ -50,7 +54,11 @@ ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/AuthService/Subrecords/Service_Info.h
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/AuthService/Subrecords/Vehicle_Data.h
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Pos_Data.h
 ${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/EGTS_Teledata_Service.h
-${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.h)
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ext_Pos_Data.h
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/State_Data.h
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Ad_Sensors_Data.h
+${CMAKE_CURRENT_SOURCE_DIR}/EGTS_Services/TeledataService/Subrecords/Counters_Data.h
+)
  
 # объявляем проект как статическую библиотеку и добавляем в него все файлы исходных кодов
 add_library(EGTS_PARSER STATIC ${HEADER_FILES} ${SOURCE_FILES})
