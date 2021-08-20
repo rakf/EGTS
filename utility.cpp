@@ -3,6 +3,9 @@
 #include "EGTS_Record/EGTS_Subrecord.h"
 #include "EGTS_Record/EGTS_Subrecord_Record_Responce.h"
 
+#include <sstream>
+#include <iomanip>
+
 
 unsigned char CRC8EGTS( const unsigned char *lpBlock, unsigned char len)
 {
@@ -117,4 +120,46 @@ int packet_finalize(char *buffer, int pointer){
          = CRC8EGTS((unsigned char *)pak_head, pak_head->headerLength - 1);	// последний байт это CRC
 
    return sizeof(unsigned short);
+}
+
+time_t toUTC(std::tm& timeinfo)
+{
+#ifdef _WIN32
+    std::time_t tt = _mkgmtime(&timeinfo);
+#else
+    time_t tt = timegm(&timeinfo);
+#endif
+    return tt;
+}
+
+std::chrono::system_clock::time_point
+createDateTime(int year,
+               int month,
+               int day,
+               int hour,
+               int minute,
+               int second) // these are UTC values
+{
+    tm timeinfo1 = tm();
+    timeinfo1.tm_year = year - 1900;
+    timeinfo1.tm_mon = month - 1;
+    timeinfo1.tm_mday = day;
+    timeinfo1.tm_hour = hour;
+    timeinfo1.tm_min = minute;
+    timeinfo1.tm_sec = second;
+    tm timeinfo = timeinfo1;
+    time_t tt = toUTC(timeinfo);
+    return std::chrono::system_clock::from_time_t(tt);
+}
+
+
+std::string getDateString( uint32_t NTM )
+{
+   auto date_start = createDateTime( 2010, 1, 1, 0, 0, 0 );
+   auto seconds = std::chrono::duration_cast<std::chrono::seconds>(
+            date_start.time_since_epoch()).count() + NTM;
+   auto date_time = *gmtime(&seconds);
+   std::stringstream stream;
+   stream << std::put_time(&date_time, "%c %Z");
+   return stream.str();
 }

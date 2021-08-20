@@ -3,6 +3,7 @@
 #include <cstring>
 #include <optional>
 #include <vector>
+#include <chrono>
 
 #include "EGTS_Packet/EGTS_Packet.h"
 
@@ -113,4 +114,16 @@ int responce_add_responce(char *buffer, int pointer, uint16_t pid, uint8_t pr);
 int EGTS_responce_add_record(char *buffer, int pointer, const EGTS_RECORD& record_source,  uint16_t crn, uint8_t rst);
 int packet_finalize(char *buffer, int pointer);
 
+
+time_t toUTC(std::tm& timeinfo);
+
+std::chrono::system_clock::time_point
+createDateTime(int year,
+               int month,
+               int day,
+               int hour,
+               int minute,
+               int second); // these are UTC values
+
+std::string getDateString( uint32_t NTM );
 

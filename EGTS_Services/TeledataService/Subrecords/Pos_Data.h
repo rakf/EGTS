@@ -51,14 +51,4 @@ public:
 };
 
 
-time_t toUTC(std::tm& timeinfo);
 
-std::chrono::system_clock::time_point
-createDateTime(int year,
-               int month,
-               int day,
-               int hour,
-               int minute,
-               int second); // these are UTC values
-
-std::string getDateString( uint32_t NTM );
